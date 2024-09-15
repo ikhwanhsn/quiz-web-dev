@@ -16,41 +16,41 @@ export default function Home() {
         <section className="grid grid-cols-5 mx-auto items-center gap-4 w-fit mt-5">
           <CategoryQuestion
             title="HTML"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis rerum ducimus dolorum."
+            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
             color={`bg-blue-700 hover:bg-blue-800 ${
-              onSelect === "html" && "border-4 border-gray-700"
+              onSelect === "html" && "border-8 border-blue-500"
             }`}
             onClick={() => setOnSelect("html")}
           />
           <CategoryQuestion
             title="CSS"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis rerum ducimus dolorum."
+            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
             color={`bg-blue-400 hover:bg-blue-500 ${
-              onSelect === "css" && "border-4 border-gray-700"
+              onSelect === "css" && "border-8 border-blue-200"
             }`}
             onClick={() => setOnSelect("css")}
           />
           <CategoryQuestion
             title="JavaScript"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis rerum ducimus dolorum."
+            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
             color={`bg-red-500 hover:bg-red-600 ${
-              onSelect === "javascript" && "border-4 border-gray-700"
+              onSelect === "javascript" && "border-8 border-red-300"
             }`}
             onClick={() => setOnSelect("javascript")}
           />
           <CategoryQuestion
             title="ReactJS"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis rerum ducimus dolorum."
+            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
             color={`bg-orange-500 hover:bg-orange-600 ${
-              onSelect === "reactjs" && "border-4 border-gray-700"
+              onSelect === "reactjs" && "border-8 border-orange-300"
             }`}
             onClick={() => setOnSelect("reactjs")}
           />
           <CategoryQuestion
             title="NextJS"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis rerum ducimus dolorum."
+            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
             color={`bg-green-500 hover:bg-green-600 ${
-              onSelect === "nextjs" && "border-4 border-gray-700"
+              onSelect === "nextjs" && "border-8 border-green-300"
             }`}
             onClick={() => setOnSelect("nextjs")}
           />
