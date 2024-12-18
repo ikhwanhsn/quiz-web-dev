@@ -16,41 +16,51 @@ export default function Home() {
         <section className="grid grid-cols-5 mx-auto items-center gap-4 w-fit mt-5">
           <CategoryQuestion
             title="HTML"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
-            color={`bg-blue-700 hover:bg-blue-800 ${
-              onSelect === "html" && "border-8 border-blue-500"
+            description="Learn the basics of HTML elements and tags to build web structures."
+            color={`bg-blue-700 ${
+              onSelect === "html"
+                ? "border-8 border-blue-500"
+                : "border-8 border-blue-700"
             }`}
             onClick={() => setOnSelect("html")}
           />
           <CategoryQuestion
             title="CSS"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
-            color={`bg-blue-400 hover:bg-blue-500 ${
-              onSelect === "css" && "border-8 border-blue-200"
+            description="Style your web pages using CSS properties and layout techniques."
+            color={`bg-blue-400 ${
+              onSelect === "css"
+                ? "border-8 border-blue-200"
+                : "border-8 border-blue-400"
             }`}
             onClick={() => setOnSelect("css")}
           />
           <CategoryQuestion
             title="JavaScript"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
-            color={`bg-red-500 hover:bg-red-600 ${
-              onSelect === "javascript" && "border-8 border-red-300"
+            description="Master JavaScript fundamentals for dynamic and interactive websites."
+            color={`bg-red-500 ${
+              onSelect === "javascript"
+                ? "border-8 border-red-300"
+                : "border-8 border-red-500"
             }`}
             onClick={() => setOnSelect("javascript")}
           />
           <CategoryQuestion
             title="ReactJS"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
-            color={`bg-orange-500 hover:bg-orange-600 ${
-              onSelect === "reactjs" && "border-8 border-orange-300"
+            description="Build powerful UIs with ReactJS components, props, and state."
+            color={`bg-orange-500 ${
+              onSelect === "reactjs"
+                ? "border-8 border-orange-300"
+                : "border-8 border-orange-500"
             }`}
             onClick={() => setOnSelect("reactjs")}
           />
           <CategoryQuestion
             title="NextJS"
-            description="lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa quasi reiciendis"
-            color={`bg-green-500 hover:bg-green-600 ${
-              onSelect === "nextjs" && "border-8 border-green-300"
+            description="Create fast, optimized websites using the NextJS framework."
+            color={`bg-green-500 ${
+              onSelect === "nextjs"
+                ? "border-8 border-green-300"
+                : "border-8 border-green-500"
             }`}
             onClick={() => setOnSelect("nextjs")}
           />
