@@ -10,7 +10,6 @@ const Quiz = () => {
   const { topic } = useParams();
   const [answerPage, setAnswerPage] = useState(1);
   const [score, setScore] = useState(0);
-  const [isFinish, setIsFinish] = useState(false);
   const [answerSelected, setAnswerSelected] = useState({
     first: 0,
     second: 0,
@@ -32,6 +31,7 @@ const Quiz = () => {
     }
   };
   const checkScore = () => {
+    let initialScore = 0;
     const topicIndexMap: Record<
       "html" | "css" | "javascript" | "reactjs" | "nextjs",
       number
@@ -54,12 +54,25 @@ const Quiz = () => {
 
       answerKeys.forEach((key, index) => {
         if (answerSelected[key] === topicQuestions[index].answer + 1) {
-          setScore((prevScore) => prevScore + 1);
+          initialScore += 1;
         }
       });
     }
-    return score;
+
+    setScore(initialScore);
   };
+
+  useEffect(() => {
+    if (
+      answerSelected.first !== 0 &&
+      answerSelected.second !== 0 &&
+      answerSelected.third !== 0 &&
+      answerSelected.fourth !== 0 &&
+      answerSelected.fifth !== 0
+    ) {
+      checkScore();
+    }
+  }, [answerSelected]);
 
   return (
     <main className="min-h-screen w-full flex items-center justify-center">
@@ -276,7 +289,7 @@ const Quiz = () => {
                 }).then((result) => {
                   if (result.isConfirmed) {
                     Swal.fire({
-                      title: "Congrats!",
+                      title: `${score >= 3 ? "Good job!" : "Not bad!"}`,
                       text: `Your score is ${score} out of 5`,
                       icon: "success",
                     }).then(() => {
