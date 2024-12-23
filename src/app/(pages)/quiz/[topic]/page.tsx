@@ -2,12 +2,15 @@
 
 import { questions } from "@/app/services/dataQuestion";
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const Quiz = () => {
   const router = useRouter();
   const { topic } = useParams();
   const [answerPage, setAnswerPage] = useState(1);
+  const [score, setScore] = useState(0);
+  const [isFinish, setIsFinish] = useState(false);
   const [answerSelected, setAnswerSelected] = useState({
     first: 0,
     second: 0,
@@ -15,14 +18,53 @@ const Quiz = () => {
     fourth: 0,
     fifth: 0,
   });
+  const checkAllAnswer = () => {
+    if (
+      answerSelected.first === 0 ||
+      answerSelected.second === 0 ||
+      answerSelected.third === 0 ||
+      answerSelected.fourth === 0 ||
+      answerSelected.fifth === 0
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+  const checkScore = () => {
+    const topicIndexMap: Record<
+      "html" | "css" | "javascript" | "reactjs" | "nextjs",
+      number
+    > = {
+      html: 0,
+      css: 1,
+      javascript: 2,
+      reactjs: 3,
+      nextjs: 4,
+    };
+
+    const topicIndex = topicIndexMap[topic as keyof typeof topicIndexMap];
+
+    if (topicIndex !== undefined) {
+      const topicQuestions = questions[topicIndex].questions;
+
+      const answerKeys: Array<
+        "first" | "second" | "third" | "fourth" | "fifth"
+      > = ["first", "second", "third", "fourth", "fifth"];
+
+      answerKeys.forEach((key, index) => {
+        if (answerSelected[key] === topicQuestions[index].answer + 1) {
+          setScore((prevScore) => prevScore + 1);
+        }
+      });
+    }
+    return score;
+  };
+
   return (
     <main className="min-h-screen w-full flex items-center justify-center">
       <center className="w-1/2">
         <h1 className="text-xl font-bold capitalize">Category: {topic}</h1>
-        <p>
-          {answerSelected.first}|{answerSelected.second}|{answerSelected.third}|
-          {answerSelected.fourth}|{answerSelected.fifth}
-        </p>
         <p className="text-3xl font-semibold mt-2">{answerPage} / 5</p>
         <p className="text-xl font-bold mt-3">
           {topic === "html" && questions[0].questions[answerPage - 1].question}
@@ -220,63 +262,39 @@ const Quiz = () => {
           <button
             className="btn btn-primary mt-5 text-white w-44"
             onClick={() => {
-              const my_modal_1 = document.getElementById(
-                "my_modal_1"
-              ) as HTMLDialogElement;
               answerPage < 5 && setAnswerPage(answerPage + 1);
-              answerPage === 5 && my_modal_1?.showModal();
+              answerPage === 5 &&
+                checkAllAnswer() &&
+                Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, finish it!",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    Swal.fire({
+                      title: "Congrats!",
+                      text: `Your score is ${score} out of 5`,
+                      icon: "success",
+                    }).then(() => {
+                      router.push("/");
+                    });
+                  }
+                });
+              answerPage === 5 &&
+                !checkAllAnswer() &&
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Please answer all question!",
+                });
             }}
           >
-            {answerPage > 4 ? "Check Score" : "Next Question"}
+            {answerPage > 4 ? "Finish" : "Next Question"}
           </button>
-          <dialog id="my_modal_1" className="modal">
-            <div className="modal-box bg-white">
-              <h3 className="font-bold text-lg">Hello!</h3>
-              <p className="py-4">
-                Press ESC key or click the button below to close
-              </p>
-              <div className="modal-action">
-                <form method="dialog">
-                  {/* if there is a button in form, it will close the modal */}
-                  <button className="btn btn-error text-white">Cancel</button>
-                </form>
-                <button
-                  className="btn btn-primary text-white"
-                  onClick={() => {
-                    const my_modal_1 = document.getElementById(
-                      "my_modal_1"
-                    ) as HTMLDialogElement;
-                    my_modal_1?.close();
-                    const my_modal_2 = document.getElementById(
-                      "my_modal_2"
-                    ) as HTMLDialogElement;
-                    my_modal_2?.showModal();
-                  }}
-                >
-                  Finish
-                </button>
-              </div>
-            </div>
-          </dialog>
-          <dialog id="my_modal_2" className="modal">
-            <div className="modal-box bg-white">
-              <h3 className="font-bold text-lg">Congrats</h3>
-              <p className="py-4">
-                Press ESC key or click the button below to close
-              </p>
-              <div className="modal-action">
-                <form method="dialog">
-                  {/* if there is a button in form, it will close the modal */}
-                  <button
-                    className="btn btn-error text-white"
-                    onClick={() => router.push("/")}
-                  >
-                    Close
-                  </button>
-                </form>
-              </div>
-            </div>
-          </dialog>
         </section>
       </center>
     </main>

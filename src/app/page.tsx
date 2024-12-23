@@ -1,10 +1,12 @@
 "use client";
 
 import CategoryQuestion from "@/components/CategoryQuestion";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Home() {
+  const router = useRouter();
   const [onSelect, setOnSelect] = useState("html");
   return (
     <main className="min-h-screen w-full flex items-center justify-center">
@@ -69,43 +71,23 @@ export default function Home() {
           <button
             className="btn btn-primary text-white mt-5"
             onClick={() => {
-              const modal = document.getElementById(
-                "my_modal_1"
-              ) as HTMLDialogElement;
-              modal?.showModal();
+              Swal.fire({
+                title: `Start ${onSelect} quiz?`,
+                text: "There will be five multiple choice questions that you must answer correctly, are you ready to start now?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, start!",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  router.push(`/quiz/${onSelect}`);
+                }
+              });
             }}
           >
             Start Quiz
           </button>
-          <dialog id="my_modal_1" className="modal">
-            <div className="modal-box bg-white">
-              <h3 className="font-bold text-lg uppercase">
-                {onSelect + " Quiz"}
-              </h3>
-              <p className="py-4">
-                There will be five multiple choice questions that you must
-                answer correctly, are you ready to start now?
-              </p>
-              <div className="modal-action">
-                <form method="dialog">
-                  {/* if there is a button in form, it will close the modal */}
-                  <button className="btn btn-error text-white">Cancel</button>
-                </form>
-                <Link
-                  href={`/quiz/${onSelect}`}
-                  className="btn btn-primary text-white"
-                  onClick={() => {
-                    const modal = document.getElementById(
-                      "my_modal_1"
-                    ) as HTMLDialogElement;
-                    modal?.close();
-                  }}
-                >
-                  Start Quiz
-                </Link>
-              </div>
-            </div>
-          </dialog>
         </center>
       </section>
     </main>
