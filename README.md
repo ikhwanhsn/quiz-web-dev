@@ -1,6 +1,6 @@
-# Quiz Website
+# Quiz Web Dev
 
-A modern, responsive, and fully functional multiple-choice quiz website built with **HTML**, **CSS**, **JavaScript**, **React.js**, and **Next.js**. This project showcases best practices in web development and serves as a portfolio piece for demonstrating skills in front-end and full-stack technologies.
+A modern, responsive, and fully functional multiple-choice quiz for web developer built with **HTML**, **CSS**, **JavaScript**, **React.js**, and **Next.js**. This project showcases best practices in web development and serves as a portfolio piece for demonstrating skills in front-end and full-stack technologies.
 
 ## Features
 
