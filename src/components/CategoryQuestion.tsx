@@ -22,7 +22,7 @@ const CategoryQuestion = ({
   return (
     <main
       onClick={onClick}
-      className={`w-52 text-center cursor-pointer h-64 rounded-t-3xl shadow-md p-5 text-white ${color}`}
+      className={`lg:w-52 w-60 text-center cursor-pointer lg:h-64 h-60 rounded-t-3xl shadow-md p-5 text-white ${color}`}
     >
       {title === "HTML" && <TbBrandHtml5 size={50} className="mx-auto" />}
       {title === "CSS" && <TbBrandCss3 size={50} className="mx-auto" />}

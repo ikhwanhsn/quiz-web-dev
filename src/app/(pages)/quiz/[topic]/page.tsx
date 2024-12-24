@@ -76,7 +76,7 @@ const Quiz = () => {
 
   return (
     <main className="min-h-screen w-full flex items-center justify-center">
-      <center className="w-1/2">
+      <center className="lg:w-1/2 md:w-5/6 w-full px-5">
         <h1 className="text-xl font-bold capitalize">Category: {topic}</h1>
         <p className="text-3xl font-semibold mt-2">{answerPage} / 5</p>
         <p className="text-xl font-bold mt-3">
@@ -89,7 +89,7 @@ const Quiz = () => {
           {topic === "nextjs" &&
             questions[4].questions[answerPage - 1].question}
         </p>
-        <section className="mt-5 w-full grid grid-cols-2 gap-2">
+        <section className="mt-5 w-full grid md:grid-cols-2 grid-cols-1 gap-2">
           <section>
             <section className="flex items-center gap-3 border-2 p-2 rounded-md cursor-pointer">
               <input

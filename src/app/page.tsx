@@ -9,13 +9,13 @@ export default function Home() {
   const router = useRouter();
   const [onSelect, setOnSelect] = useState("html");
   return (
-    <main className="min-h-screen w-full flex items-center justify-center">
+    <main className="min-h-screen w-full flex items-center justify-center md:px-0 px-5 pb-12">
       <section className="w-full">
         <h1 className="text-lg text-center max-w-xl mx-auto font-semibold">
           Choose one from categories below & see how many questions you can
           answer correctly out of 5 questions
         </h1>
-        <section className="grid grid-cols-5 mx-auto items-center gap-4 w-fit mt-5">
+        <section className="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 mx-auto justify-center items-center gap-4 w-fit mt-5">
           <CategoryQuestion
             title="HTML"
             description="Learn the basics of HTML elements and tags to build web structures."
